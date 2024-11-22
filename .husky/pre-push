@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "Running pre-push checks..."
+
+# Step 1: Install dependencies
+echo "Installing dependencies..."
+npm install --legacy-peer-deps || { echo "❌ Dependency installation failed"; exit 1; }
+
+# Step 2: Run linting
+echo "Linting the backend..."
+npx nx lint backend || { echo "❌ Linting failed"; exit 1; }
+
+# Step 3: Build the frontend
+echo "Building the frontend..."
+npx nx build frontend || { echo "❌ Frontend build failed"; exit 1; }
+
+# Step 4: Build the backend
+echo "Building the backend..."
+npx nx build backend || { echo "❌ Backend build failed"; exit 1; }
+
+# Success animation
+show_success_message() {
+  echo -n "Running checks"
+  for i in {5..1}; do
+    echo -n "*"
+    sleep 0.1
+  done
+
+  echo -e "\n🎉  All checks passed!... Proceeding with push. Great job! 🚀"
+  echo -e "------------------------------------------------------------"
+}
+
+# Call the function
+show_success_message
+
+exit 0
