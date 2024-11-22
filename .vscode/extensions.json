@@ -1,12 +1,7 @@
 {
   "recommendations": [
+    "nrwl.angular-console",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "firsttris.vscode-jest-runner",
-    "pkief.material-icon-theme",
-    "formulahendry.auto-rename-tag",
-    "kelset.rn-full-pack",
-    "wallabyjs.console-ninja",
-    "vunguyentuan.vscode-css-variables"
+    "firsttris.vscode-jest-runner"
   ]
 }

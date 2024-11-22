@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import styles from './app.module.css';
+
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
@@ -13,6 +16,7 @@ export function App() {
       <br />
       <hr />
       <br />
+      <h1>Wow</h1>
       <div role="navigation">
         <ul>
           <li>

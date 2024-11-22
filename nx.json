@@ -4,20 +4,17 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js",
-      "!{projectRoot}/cypress/**/*",
-      "!{projectRoot}/**/*.cy.[jt]s?(x)",
-      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "673f6bd5a870df2f07d434ed",
+  "nxCloudId": "673fa8ce10a1e331acebdb17",
   "plugins": [
     {
       "plugin": "@nx/js/typescript",
@@ -32,6 +29,19 @@
       }
     },
     {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "exclude": ["backend-e2e/**/*"]
+    },
+    {
       "plugin": "@nx/vite/plugin",
       "options": {
         "buildTargetName": "build",
@@ -41,35 +51,9 @@
         "serveStaticTargetName": "serve-static",
         "typecheckTargetName": "typecheck"
       }
-    },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/cypress/plugin",
-      "options": {
-        "targetName": "e2e",
-        "openTargetName": "open-cypress",
-        "componentTestingTargetName": "component-test",
-        "ciTargetName": "e2e-ci"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
-      "exclude": ["backend-e2e/**/*"]
     }
   ],
-  "defaultBase": "main",
   "targetDefaults": {
-    "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
-    },
     "@nx/esbuild:esbuild": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -80,15 +64,15 @@
     "@nx/react": {
       "application": {
         "babel": true,
-        "style": "none",
+        "style": "css",
         "linter": "eslint",
         "bundler": "vite"
       },
       "component": {
-        "style": "none"
+        "style": "css"
       },
       "library": {
-        "style": "none",
+        "style": "css",
         "linter": "eslint"
       }
     }
