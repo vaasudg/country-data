@@ -7,7 +7,8 @@
     "dev:fe": "npx nx serve frontend",
     "dev:be": "npx nx serve backend",
     "lint:fe": "npx nx lint frontend",
-    "lint:be": "npx nx lint backend"
+    "lint:be": "npx nx lint backend",
+    "prepare": "husky install"
   },
   "private": true,
   "devDependencies": {
